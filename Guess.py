@@ -1,13 +1,26 @@
 import random
-print("In this game you will have to guess a number randomly picked by the computer in the lest amount of times")
-low = int(input("Enter the minimum of the range: "))
-high = int(input("Enter the maximum o the range: "))
-num = random.randint(low,high)
-print(num)
-choice = int(input("Make a guess!: "))
-while choice > high or choice < low :
-    choice = int(input("Please enter a number between the chosen range: "))
-while choice != num :
-    choice = int(input("Try again: "))
-if choice == num :
-    print("You have won!!! ")
+
+(print("Phyton number guessing game "))
+min_num = int(input("Enter the range minimum: "))
+max_num = int(input("Enter the range maximum: "))
+answer = random.randint(min_num, max_num)
+game_running = True
+guesses = 0
+while game_running :
+    guess = (input("Enter your guess: "))
+    if guess.isdigit() :
+        guess = int(guess)
+        guesses += 1
+
+        if guess < min_num or guess > max_num :
+            print("That number is out of range")
+        elif guess < answer :
+            print("Too low")
+        elif guess > answer :
+            print("Too high")
+        else :
+            print(f"Correct!! The answer was {answer}")
+            print(f"It took you {guesses} guesses")
+            game_running = False
+    else :
+        print("Invalid answer")
